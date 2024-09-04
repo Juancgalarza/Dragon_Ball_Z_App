@@ -1,0 +1,7 @@
+{
+  "name": "Dragon_Ball_Z_App",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
