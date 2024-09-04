@@ -1,0 +1,55 @@
+<ion-header mode="md">
+  <ion-toolbar>
+    <ion-title>
+      <div class="version">Ionic v8</div>
+      <strong>Dragon Ball Z</strong>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content mode="ios">
+  <div class="glass-content">
+   
+    <ion-row class="ion-justify-content-center">  <!-- Centrar las columnas -->
+      @for (c of characters(); track $index) {
+        <ion-col routerLink="/character-detail/{{c.id}}" routerLinkActive="router-link-active" size-lg="6" size-md="6" size-sm="12" size="12" class="ion-padding">
+          <ion-card>
+            <ion-card-header>
+              <ion-img [src]="c.image"></ion-img>
+            </ion-card-header>
+            <ion-card-content>
+              <div class="name ion-text-center">{{c.name}} - <ion-chip color="success">{{c.affiliation}}</ion-chip> </div>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="6" class="ion-text-center">  <!-- Centrar el contenido de las columnas -->
+                    <ion-badge color="tertiary">Género</ion-badge>
+                    <div><strong>{{c.gender == 'Male' ? 'Masculino' : 'Femenino'}}</strong></div>
+                  </ion-col>
+                  <ion-col size="6" class="ion-text-center">  <!-- Centrar el contenido de las columnas -->
+                    <ion-badge color="secondary">Raza</ion-badge>
+                    <div><strong>{{c.race}}</strong></div>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="6" class="ion-text-center">  <!-- Centrar el contenido de las columnas -->
+                    <ion-badge color="success">Base Ki</ion-badge>
+                    <div><strong>{{c.ki}}</strong></div>
+                  </ion-col>
+                  <ion-col size="6" class="ion-text-center">  <!-- Centrar el contenido de las columnas -->
+                    <ion-badge color="warning">Total Ki</ion-badge>
+                    <div><strong>{{c.maxKi}}</strong></div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      }
+    </ion-row>
+
+    <ion-infinite-scroll threshold="25%" position="bottom" (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content loadingText="Cargando Personajes..." loadingSpinner="lines">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+</ion-content>
